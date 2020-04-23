@@ -1,6 +1,6 @@
 # Chess
 
-This program is Chess. It will have .
+This program is Chess. It will have an AI opponent eventually and all the rules and features of normal chess.
 Included within the repository is a copy of this readme file, a license file and a python file. This is just a project that I wanted to challenge myself with. I used Ajay Karat's sprites, see attribution at the bottom.
 
 ## Prerequisites
