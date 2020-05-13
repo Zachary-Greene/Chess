@@ -13,12 +13,13 @@ pygame.display.set_icon(icon)
 
 chess_board = pygame.image.load('Assets/chess_board.png')
 
-b_caught = []
-w_caught = []
+# b_caught = []  # to be implemented
+# w_caught = []
 
 hold = False
 run = True
 
+# defining all the pieces x, y, width, height and color (respectively)
 BlackBishop1 = Bishop(190, 10, 72, 76, 0)
 BlackBishop2 = Bishop(455, 10, 72, 76, 0)
 BlackKing = King(365, 10, 72, 76, 0)
@@ -60,18 +61,19 @@ def moveTo(piece):
         pos = pygame.mouse.get_pos()  # define pos as the position of the mouse cursor
         if piece.hitbox[0] <= pos[0] <= piece.hitbox[0] + piece.hitbox[2]:  # if you click inside the hitbox on the x plane
             if piece.hitbox[1] <= pos[1] <= piece.hitbox[1] + piece.hitbox[3]:  # if you click inside the hitbox on the y plane
-                hold = True  # define hold as True
-    if hold:  # if hold
+                hold = True
+    if hold:
         pos = pygame.mouse.get_pos()  # define pos as the position of the mouse cursor
-        piece.x = pos[0] - (piece.hitbox[2] / 2)
-        piece.y = pos[1] - (piece.hitbox[3] / 2)
+        piece.x = pos[0] - (piece.hitbox[2] / 2)  # centers the piece under the cursor
+        piece.y = pos[1] - (piece.hitbox[3] / 2)  # ...
         hold = True
 
-    if event.type == pygame.MOUSEBUTTONUP:
-        hold = False
+    if event.type == pygame.MOUSEBUTTONUP:  # if you release the mouse button
+        hold = False  # define hold as false
 
 
 def redrawWindow():
+    # drawing everything to the screen
     win.blit(chess_board, (0, 0))
 
     BlackBishop1.draw(win)
@@ -112,11 +114,12 @@ def redrawWindow():
 
 
 while run:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            quit()
+    for event in pygame.event.get():  # for every event in pygame
+        if event.type == pygame.QUIT:  # if an event is QUIT
+            pygame.quit()  # quit pygame
+            quit()  # quit the program
 
         moveTo(BlackBishop1)
+        moveTo(BlackBishop2)
 
     redrawWindow()
