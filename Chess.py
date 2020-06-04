@@ -1,4 +1,4 @@
-from Pieces import *  # imports pygame as well *somehow?*
+from Pieces import *
 
 pygame.init()
 
