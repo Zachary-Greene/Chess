@@ -16,7 +16,6 @@ chess_board = pygame.image.load('Assets/chess_board.png')
 # b_caught = []  # to be implemented
 # w_caught = []
 
-hold = False
 run = True
 
 # defining all the pieces x, y, width, height and color (respectively)
@@ -56,20 +55,14 @@ WhiteRook2 = Rook(630, 630, 72, 76, 1)
 
 
 def moveTo(piece):
-    global hold
-    if event.type == pygame.MOUSEBUTTONDOWN:  # check if you push the mouse button down
-        pos = pygame.mouse.get_pos()  # define pos as the position of the mouse cursor
-        if piece.hitbox[0] <= pos[0] <= piece.hitbox[0] + piece.hitbox[2]:  # if you click inside the hitbox on the x plane
-            if piece.hitbox[1] <= pos[1] <= piece.hitbox[1] + piece.hitbox[3]:  # if you click inside the hitbox on the y plane
-                hold = True
-    if hold:
-        pos = pygame.mouse.get_pos()  # define pos as the position of the mouse cursor
-        piece.x = pos[0] - (piece.hitbox[2] / 2)  # centers the piece under the cursor
-        piece.y = pos[1] - (piece.hitbox[3] / 2)  # ...
-        hold = True
+    mousePos = pygame.mouse.get_pos()  # mousePos as the position of the mouse cursor
+    click = pygame.mouse.get_pressed()  # define click as a method of detecting a mouse button down object
 
-    if event.type == pygame.MOUSEBUTTONUP:  # if you release the mouse button
-        hold = False  # define hold as false
+    if click[0] == 1 and piece.hitbox[0] <= mousePos[0] <= piece.hitbox[0] + piece.hitbox[2]:  # if the left mouse button is clicked and
+        # then if its clicked in the hitbox (x plane)
+        if piece.hitbox[1] <= mousePos[1] <= piece.hitbox[1] + piece.hitbox[3]:  # if its clicked in the hitbox (y plane)
+            piece.x = mousePos[0] - (piece.hitbox[2] / 2)  # centers the piece under the mouse cursor
+            piece.y = mousePos[1] - (piece.hitbox[3] / 2)  # ...
 
 
 def redrawWindow():
@@ -118,8 +111,40 @@ while run:
         if event.type == pygame.QUIT:  # if an event is QUIT
             pygame.quit()  # quit pygame
             quit()  # quit the program
-
+            
+        # calling the moveTo function for each piece
         moveTo(BlackBishop1)
         moveTo(BlackBishop2)
+        moveTo(BlackKing)
+        moveTo(BlackKnight1)
+        moveTo(BlackKnight2)
+        moveTo(BlackPawn1)
+        moveTo(BlackPawn2)
+        moveTo(BlackPawn3)
+        moveTo(BlackPawn4)
+        moveTo(BlackPawn5)
+        moveTo(BlackPawn6)
+        moveTo(BlackPawn7)
+        moveTo(BlackPawn8)
+        moveTo(BlackQueen)
+        moveTo(BlackRook1)
+        moveTo(BlackRook2)
+
+        moveTo(WhiteBishop1)
+        moveTo(WhiteBishop2)
+        moveTo(WhiteKing)
+        moveTo(WhiteKnight1)
+        moveTo(WhiteKnight2)
+        moveTo(WhitePawn1)
+        moveTo(WhitePawn2)
+        moveTo(WhitePawn3)
+        moveTo(WhitePawn4)
+        moveTo(WhitePawn5)
+        moveTo(WhitePawn6)
+        moveTo(WhitePawn7)
+        moveTo(WhitePawn8)
+        moveTo(WhiteQueen)
+        moveTo(WhiteRook1)
+        moveTo(WhiteRook2)
 
     redrawWindow()
